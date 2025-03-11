@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create Your Own Recipe</title>
+    <link rel="stylesheet" href="recipe-form-style.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div id="home-page">Recipe</div>
+      <div>Create new Recipe</div>
+    </header>
+    <main>
+      <h1>Create your own Recipe below</h1>
+      <form action="">
+        <div class="recipe-name">
+          <label for="recipe-name">Recipe name: </label>
+          <input
+            type="text"
+            id="recipe-name"
+            placeholder="Please enter recipe name"
+            required
+          />
+        </div>
+
+        <div class="recipe-img">
+          <label for="recipe-image">Image URL:</label>
+          <input
+            type="text"
+            id="recipe-image"
+            placeholder="Enter image URL"
+            required
+          />
+        </div>
+
+        <h2>Ingredients:</h2>
+        <div class="ingredient-list">
+          <div class="ingredient-item">
+            <input
+              type="text"
+              class="ingredient-name"
+              placeholder="Ingredient"
+              required
+            />
+            <input
+              type="number"
+              class="ingredient-amount"
+              placeholder="Amount"
+              required
+            />
+            <input
+              type="text"
+              class="ingredient-unit"
+              placeholder="Ingredient-unit"
+              required
+            />
+          </div>
+          <div class="ingredient-item">
+            <input
+              type="text"
+              class="ingredient-name"
+              placeholder="Ingredient"
+              required
+            />
+            <input
+              type="number"
+              class="ingredient-amount"
+              placeholder="Amount"
+              required
+            />
+            <input
+              type="text"
+              class="ingredient-unit"
+              placeholder="Ingredient-unit"
+              required
+            />
+          </div>
+          <div class="ingredient-item">
+            <input
+              type="text"
+              class="ingredient-name"
+              placeholder="Ingredient"
+              required
+            />
+            <input
+              type="number"
+              class="ingredient-amount"
+              placeholder="Amount"
+              required
+            />
+            <input
+              type="text"
+              class="ingredient-unit"
+              placeholder="Ingredient-unit"
+              required
+            />
+          </div>
+          <div class="ingredient-item">
+            <input
+              type="text"
+              class="ingredient-name"
+              placeholder="Ingredient"
+              required
+            />
+            <input
+              type="number"
+              class="ingredient-amount"
+              placeholder="Amount"
+              required
+            />
+            <input
+              type="text"
+              class="ingredient-unit"
+              placeholder="Ingredient-unit"
+              required
+            />
+          </div>
+          <div class="ingredient-item">
+            <input
+              type="text"
+              class="ingredient-name"
+              placeholder="Ingredient"
+              required
+            />
+            <input
+              type="number"
+              class="ingredient-amount"
+              placeholder="Amount"
+              required
+            />
+            <input
+              type="text"
+              class="ingredient-unit"
+              placeholder="Ingredient-unit"
+              required
+            />
+          </div>
+        </div>
+
+        <button type="button" id="add-ingredient-button">
+          Add more ingredients
+        </button>
+        <label for="recipe-description" class="description">Description</label>
+        <textarea
+          id="recipe-description"
+          placeholder="Enter recipe description"
+          required
+        ></textarea>
+
+        <button type="submit" id="save-button">Save</button>
+      </form>
+    </main>
+    <script src="recipe-form-script.js"></script>
+  </body>
+</html>
