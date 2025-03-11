@@ -18,18 +18,14 @@ ingredientNameInput.placeholder="Ingredient"
 ingredientNameInput.required = true
 
 const amountAndUnitInput = document.createElement("input")
-amountInput.type = 'text'
-amountInput.classList.add("ingredient-amount-unit")
-amountInput.placeholder = "Amount and Unit";
-amountInput.required = true;
-
-
+amountAndUnitInput.type = "text";
+amountAndUnitInput.classList.add("ingredient-amount")
+amountAndUnitInput.placeholder = "Amount and Unit";
+amountAndUnitInput.required = true;
 
 addDiv.appendChild(ingredientNameInput)
 addDiv.appendChild(amountAndUnitInput)
-
 IngredientList.appendChild(addDiv)
-
 }
 
 
