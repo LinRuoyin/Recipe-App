@@ -17,21 +17,17 @@ ingredientNameInput.classList.add("ingredient-name")
 ingredientNameInput.placeholder="Ingredient"
 ingredientNameInput.required = true
 
-const amountInput = document.createElement("input")
-amountInput.type = 'number'
-amountInput.classList.add("ingredient-amount")
-amountInput.placeholder = "Amount";
+const amountAndUnitInput = document.createElement("input")
+amountInput.type = 'text'
+amountInput.classList.add("ingredient-amount-unit")
+amountInput.placeholder = "Amount and Unit";
 amountInput.required = true;
 
-const unitInput = document.createElement("input")
-unitInput.type='text'
-unitInput.classList.add("ingredient-unit")
-unitInput.placeholder = "Unit";
-unitInput.required = true;
+
 
 addDiv.appendChild(ingredientNameInput)
-addDiv.appendChild(amountInput)
-addDiv.appendChild(unitInput)
+addDiv.appendChild(amountAndUnitInput)
+
 IngredientList.appendChild(addDiv)
 
 }

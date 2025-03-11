@@ -90,7 +90,7 @@ textarea {
 
 .ingredient-name,
 .ingredient-amount
-.ingredient-unit {
+{
   flex: 1;
 }
 

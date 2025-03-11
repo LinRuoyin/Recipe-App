@@ -7,18 +7,19 @@
 <link rel="stylesheet" href="home-page-style.css">
 </head>
 <body>
-  <header>
-<div>Recipe</div>
+  <header class="header">
+<div id="recipe-page">Recipe</div>
 <div id="create-page">Create new Recipe</div>
-  </header>
-<main class="recipe-container">
 
-<h1 class="recipe-name">Recipe Name</h1>
-<img class="recipe-img" src="" alt="Recipe Image" >
-<h1 class="ingredients">Ingredients:</h1>
-<ul class="ingredient-list"></ul>
-<h1 class="description">Description:</h1>
-<p class="recipe-description"></p>
+  </header>
+  <div class="search-bar">
+  <input type="text" id="search-input" placeholder="Search for recipe">
+  <button id="search-button">Search</button>
+</div>
+<div id="search-result">
+  All recipes :
+</div>
+<main class="recipe-container">
 
 </main>
   
