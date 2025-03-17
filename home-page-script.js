@@ -1,4 +1,4 @@
-let recipeObjectArray = [
+const recipesObjectArray = [
   {
     id: 1,
     title: "Gløgg",
@@ -87,82 +87,57 @@ let recipeObjectArray = [
   },
 ];
 
-recipeObjectArray.forEach((dish) => {
-  dish.ingredients.sort((a, b) => {
+
+//sorting the recipe ingredients by ascending order
+recipesObjectArray.forEach((recipe) => {
+  recipe.ingredients.sort((a, b) => {
     const numberA = parseFloat(a.amount) || 0;
-    const numberB = parseFloat(b.amount) || 0;
+    const numberB = parseFloat(b.amount) || 0;  
     return numberA - numberB;
   });
 });
 
-document.querySelector("#create-page").addEventListener("click", function () {
-  window.location.href = "recipe-form.html";
-});
 
-//<div class="recipe-box">
-//<h1 class="recipe-name">Recipe Name</h1>
-//<img class="recipe-img" src="" alt="Recipe Image" >
-/*<h1 class="ingredients">Ingredients:</h1>
-<ul class="ingredient-list"></ul>
-<h1 class="description">Description:</h1>
-<p class="recipe-description"></p>
-</div> */
-const recipeContainer = document.querySelector(".recipe-container");
+
+const recipeContainer = document.querySelector(".main");
 
 function displayRecipe(recipe) {
-  recipe.forEach((dish) => {
+  recipe.forEach((recipe) => {
     const recipeBox = document.createElement("div");
     recipeBox.classList.add("recipe-box");
-    const recipeName = document.createElement("h1");
-    recipeName.classList.add("recipe-name");
-    recipeName.innerHTML = dish.title;
-    const recipeImg = document.createElement("img");
-    recipeImg.classList.add("recipe-img");
-    recipeImg.src = dish.picture_url;
-    recipeImg.alt = "Recipe Image";
-    const recipeIngredients = document.createElement("h1");
-    recipeIngredients.innerHTML = "Ingredients";
-    recipeIngredients.classList.add("ingredients");
-    const ingredientList = document.createElement("ul");
-    ingredientList.classList.add("ingredient-list");
-    dish.ingredients.forEach((ingredient) => {
+    recipeBox.innerHTML = `
+<h2 class="recipe-name ">${recipe.title}</h2>
+<img class="recipe-img" src="${recipe.picture_url}" alt="${recipe.title}" >
+<h2 class="ingredients basic-font-size">Ingredients:</h2>
+<ul class="ingredient-list"></ul>
+<h2 class="description basic-font-size">Description:</h2>
+<p class="recipe-description basic-font-size">${recipe.description}</p>
+`;
+
+    const ingredientList = recipeBox.querySelector(".ingredient-list");
+
+    recipe.ingredients.forEach((ingredient) => {
       const li = document.createElement("li");
-      if (typeof ingredient.amount !== "string") {
-        li.innerHTML = `${ingredient.name}: not provided`;
-      } else {
-        li.innerHTML = `${ingredient.name}: ${ingredient.amount}`;
-      }
+      // if (typeof ingredient.amount !== "string") {
+      //   li.innerHTML = `${ingredient.name}: not provided`;
+      // } else {
+      //   li.innerHTML = `${ingredient.name}: ${ingredient.amount}`;
+      // }
+      li.innerHTML = `${ingredient.name}: ${ingredient.amount}`;
       ingredientList.appendChild(li);
     });
 
-    const recipeDescription = document.createElement("h1");
-    recipeDescription.innerHTML = "Description";
-    recipeDescription.classList.add("description");
-    const recipeDescriptionText = document.createElement("p");
-    recipeDescriptionText.classList.add("recipe-description");
-    recipeDescriptionText.innerHTML = dish.description;
-
-    recipeBox.appendChild(recipeName);
-    recipeBox.appendChild(recipeImg);
-    recipeBox.appendChild(recipeIngredients);
-    recipeBox.appendChild(ingredientList);
-    recipeBox.appendChild(recipeDescription);
-    recipeBox.appendChild(recipeDescriptionText);
     recipeContainer.appendChild(recipeBox);
   });
 }
 
-displayRecipe(recipeObjectArray);
+displayRecipe(recipesObjectArray);
 
 function goBackToHomePage() {
   searchResult.innerHTML = "All recipes :";
   recipeContainer.innerHTML = "";
-  displayRecipe(recipeObjectArray);
+  displayRecipe(recipesObjectArray);
 }
-
-document
-  .querySelector("#recipe-page")
-  .addEventListener("click", goBackToHomePage);
 
 const searchInput = document.getElementById("search-input");
 const searchButton = document.getElementById("search-button");
@@ -171,19 +146,19 @@ const searchResult = document.getElementById("search-result");
 //
 function displaySearchedRecipes() {
   const keyword = searchInput.value.trim().toLowerCase();
-  searchResult.innerHTML = "Search result for: " + keyword + ":";
+  searchResult.innerHTML = `Search result for ${keyword}:`;
   searchInput.value = "";
   recipeContainer.innerHTML = "";
 
-  if (keyword === "") {
+  if (!keyword) {
     goBackToHomePage();
     return;
   }
 
-  const filteredRecipes = recipeObjectArray.filter((dish) => {
-    return dish.title.toLowerCase().includes(keyword);
+  const filteredRecipes = recipesObjectArray.filter((recipe) => {
+    return recipe.title.toLowerCase().includes(keyword);
   });
-  if (filteredRecipes.length === 0) {
+  if (!filteredRecipes.length) {
     recipeContainer.innerHTML = "No recipes found :(";
     return;
   }
