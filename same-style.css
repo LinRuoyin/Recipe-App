@@ -1,0 +1,37 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: blanchedalmond;
+  text-align: center;
+  font-weight: 100;
+  font-size: 1rem;
+}
+
+.basic-font-size {
+  font-size: 1rem;
+}
+
+.header {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin: auto;
+  background-color: aliceblue;
+  max-width: 768px;
+  border-radius: 30px;
+  padding: 20px;
+  margin-bottom: 10px;
+}
+
+
+
+.header-sub{
+  font-size: 1.5rem;
+  font-weight: 700;
+  cursor: pointer;
+  color: #17171d;
+  text-decoration: none;
+}
+
+.anchor:hover {
+  color: rgb(128, 128, 205);
+  transform: translateY(-3px);
+}

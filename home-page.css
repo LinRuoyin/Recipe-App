@@ -1,40 +1,4 @@
-body {
-  font-family: Arial, Helvetica, sans-serif;
-  background-color: blanchedalmond;
-  text-align: center;
-  font-weight: 100;
-  font-size: 1rem;
-}
 
-.basic-font-size{
-  font-size:1rem;
-}
-
-.header {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  margin: auto;
-  background-color: aliceblue;
-  max-width: 768px;
-  border-radius: 30px;
-  padding: 20px;
-  margin-bottom: 10px;
-}
-
-.recipe-page,
-.add-recipe {
-  font-size: 1.5rem;
-  font-weight: 700;
-  cursor: pointer;
-  color: #17171d;
-  text-decoration: none;
-}
-
-
-.add-recipe:hover {
-  color: rgb(128, 128, 205);
-  transform: translateY(-3px);
-}
 
 .search-bar {
   margin: 20px;
@@ -81,8 +45,6 @@ body {
   padding-bottom: 10px;
 }
 
-
-
 .description {
   margin-bottom: 0px;
 }
@@ -113,3 +75,5 @@ body {
     font-size: 1rem;
   }
 }
+
+

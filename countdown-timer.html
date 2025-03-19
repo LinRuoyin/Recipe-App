@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Timer</title>
+  </head>
+  <link rel="stylesheet" href="same-style.css" />
+  <link rel="stylesheet" href="countdown-timer.css" />
+  <body>
+    <header class="header">
+      <a class="recipe-page header-sub anchor" href="index.html">Recipe</a>
+      <a class="add-recipe header-sub anchor" href="add-recipe-form.html"
+        >Add new Recipe
+      </a>
+      <div class="countdown-timer-page header-sub">Timer</div>
+    </header>
+    <main class="countdown-timer-box">
+      <h3 class="countdown-timer-title">Countdown Timer</h3>
+      <h4 class="countdown-enter-the-time">Please enter the time:</h4>
+      <div class="countdown-input-boxes">
+        <span class="countdown-input-box"
+          >Hour:
+
+          <input
+            type="number"
+            id="countdown-hour-input"
+            class="countdown-input"
+            name="hour"
+            placeholder="hr"
+            min="0"
+            max="99"
+            step="1"
+          />
+        </span>
+        <span class="countdown-input-box"
+          >Minute:
+          <input
+            type="number"
+            id="countdown-minute-input"
+            class="countdown-input"
+            name="minute"
+            placeholder="min"
+            min="0"
+            max="59"
+            step="1"
+        /></span>
+        <span class="countdown-input-box"
+          >Second:
+
+          <input
+            type="number"
+            id="countdown-second-input"
+            class="countdown-input"
+            name="second"
+            placeholder="sec"
+            min="0"
+            max="59"
+            step="1"
+          />
+        </span>
+      </div>
+
+      <div class="buttons">
+        <button class="start-button button" id="start-button">start</button>
+        <button class="pause-button button" id="pause-button">pause</button>
+        <button class="reset-button button" id="reset-button">reset</button>
+      </div>
+
+      <div class="countdown-timer" id="countdown-timer">00:00:00</div>
+    </main>
+    <script src="countdown-timer.js"></script>
+  </body>
+</html>
