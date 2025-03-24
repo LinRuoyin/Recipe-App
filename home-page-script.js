@@ -88,6 +88,18 @@ const recipesObjectArray = [
 ];
 
 
+//Count the time that the user has been on the page
+let totalSecond = 0
+const timer= document.querySelector("#timer")
+
+
+setInterval(()=>{
+totalSecond++
+timer.innerHTML=formatTime(totalSecond)
+},1000)
+
+
+
 //sorting the recipe ingredients by ascending order
 recipesObjectArray.forEach((recipe) => {
   recipe.ingredients.sort((a, b) => {

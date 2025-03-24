@@ -4,20 +4,44 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="stylesheet" href="same-style.css" />
     <link rel="stylesheet" href="home-page.css" />
   </head>
   <body>
     <header class="header">
-      <div class="recipe-page">Recipe</div>
-      <a class="add-recipe" href="add-recipe-form.html">Add new Recipe </a>
+      <div class="recipe-page header-sub">Recipe</div>
+      <a class="add-recipe header-sub anchor" href="add-recipe-form.html"
+        >Add new Recipe
+      </a>
+      <a
+        class="countdown-timer-page header-sub anchor"
+        href="countdown-timer.html"
+        >Timer</a
+      >
     </header>
-    <div class="search-bar">
-      <input type="text" class="search-input" id="search-input" placeholder="Search for recipe" />
-      <button class="search-button" id="search-button" type="button">Search</button>
-    </div>
-    <div class="search-result" id="search-result">All recipes :</div>
+
+    <section class="timer-search-bar">
+      <div class="timer-bar">
+        <div class="timer-explanation">You have been on this page for:</div>
+        <div class="timer" id="timer">00:00:00</div>
+      </div>
+      <div class="search-bar">
+        <input
+          type="text"
+          class="search-input"
+          id="search-input"
+          placeholder="Search for recipe"
+        />
+        <button class="search-button" id="search-button" type="button">
+          Search
+        </button>
+      </div>
+      <div class="search-result" id="search-result">All recipes :</div>
+    </section>
+
     <main class="main"></main>
 
+    <script src="same-script.js"></script>
     <script src="home-page-script.js"></script>
   </body>
 </html>
