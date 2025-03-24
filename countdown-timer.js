@@ -33,14 +33,6 @@ function minuteSecondInputLimit(event) {
 minuteInput.addEventListener("input", minuteSecondInputLimit);
 secondInput.addEventListener("input", minuteSecondInputLimit);
 
-function formatTime(seconds) {
-  const hour = String(parseInt(seconds / 3600)).padStart(2, "0") || 0;
-  const minute = String(parseInt((seconds % 3600) / 60)).padStart(2, "0") || 0;
-  const second = String(seconds % 60).padStart(2, "0") || 0;
-
-  return `${hour}:${minute}:${second}`;
-}
-
 //countdown display as
 function countdownDisplay() {
   countdownTimer.innerHTML = formatTime(totalSeconds);
@@ -55,6 +47,22 @@ function toggleInputs(boolean) {
 
 let timerId = 0;
 let totalSeconds = 0;
+
+function timesUpFunction() {
+  if (totalSeconds <= 0) {
+    clearInterval(timerId);
+    timerId = 0;
+    totalSeconds = 0;
+    toggleInputs(false);
+    countdownTimer.innerHTML = "Time's up!";
+    countdownTimer.style.color = "red";
+    hourInput.value = "";
+    minuteInput.value = "";
+    secondInput.value = "";
+  } else {
+    countdownDisplay();
+  }
+}
 
 startButton.addEventListener("click", () => {
   //check if the timer is on
@@ -74,43 +82,36 @@ startButton.addEventListener("click", () => {
 
   timerId = setInterval(() => {
     totalSeconds--;
-    if (totalSeconds <= 0) {
-      clearInterval(timerId);
-      timerId = 0;
-      totalSeconds = 0;
-      toggleInputs(false);
-      countdownTimer.innerHTML = "Time's up!";
-      countdownTimer.style.color = "red";
-    } else {
-      countdownDisplay();
-    }
+    timesUpFunction();
   }, 1000);
   countdownTimer.style.color = "black";
-  pauseButton.innerHTML = "Pause";
+  pauseButton.innerHTML = "pause";
 });
 
 pauseButton.addEventListener("click", () => {
   if (timerId !== 0) {
     clearInterval(timerId);
     timerId = 0;
-    pauseButton.innerHTML = "Resume";
+    pauseButton.innerHTML = "resume";
   } else {
     if (totalSeconds > 0) {
       timerId = setInterval(() => {
         totalSeconds--;
-        pauseButton.innerHTML = "Pause";
+        pauseButton.innerHTML = "pause";
         toggleInputs(true);
-        if (totalSeconds <= 0) {
-          clearInterval(timerId);
-          timerId = 0;
-          totalSeconds = 0;
-          toggleInputs(false);
-          countdownTimer.innerHTML = "Time's up!";
-          countdownTimer.style.color = "red";
-          pauseButton.innerHTML = "Pause";
-        } else {
-          countdownDisplay();
-        }
+        // if (totalSeconds <= 0) {
+        //   clearInterval(timerId);
+        //   timerId = 0;
+        //   totalSeconds = 0;
+        //   toggleInputs(false);
+        //   countdownTimer.innerHTML = "Time's up!";
+        //   countdownTimer.style.color = "red";
+        //   pauseButton.innerHTML = "Pause";
+        // } else {
+        //   countdownDisplay();
+        // }
+        timesUpFunction();
+        pauseButton.innerHTML = "pause";
       }, 1000);
     }
   }
@@ -126,6 +127,6 @@ resetButton.addEventListener("click", () => {
 
   countdownTimer.innerHTML = "00:00:00";
   toggleInputs(false);
-  pauseButton.innerHTML = "Pause";
+  pauseButton.innerHTML = "pause";
   countdownTimer.style.color = "black";
 });
