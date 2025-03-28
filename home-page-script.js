@@ -6,7 +6,6 @@ async function getIngredientPriceData() {
     "https://raw.githubusercontent.com/LinRuoyin/LinRuoyin.github.io/main/data/ingredients.json"
   );
   const priceData = await response.json();
-  ingredientPriceArray = priceData;
   return priceData;
 }
 
@@ -17,7 +16,7 @@ async function loadAndDisplayRecipes() {
   const recipeData = await recipeResponse.json();
   recipesObjectArray = recipeData;
 
-  await getIngredientPriceData();
+  ingredientPriceArray=await getIngredientPriceData();
 
   sortRecipeByIngredientAmount();
 
@@ -39,20 +38,6 @@ async function loadAndDisplayRecipes() {
 
 loadAndDisplayRecipes();
 
-// async function getData(){
-//   const response = await fetch(
-//     "https://raw.githubusercontent.com/LinRuoyin/LinRuoyin.github.io/main/data/Recipe-app.json"
-//   );
-//  recipesObjectArray = await response.json()
-// displayRecipe(recipesObjectArray);
-
-// }
-
-// getData()
-
-//Get the ingredient price and display it on the recipe
-
-//Count the time that the user has been on the page
 let totalSecond = 0;
 const timer = document.querySelector("#timer");
 
@@ -168,6 +153,8 @@ function displaySearchedRecipes() {
         return true;
       }
     });
+
+
 
     if (!uniqueRecipe.length) {
       recipeContainer.innerHTML = "No recipes found:(";
