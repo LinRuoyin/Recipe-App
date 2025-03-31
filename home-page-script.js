@@ -2,38 +2,51 @@ let recipesObjectArray = [];
 let ingredientPriceArray = [];
 
 async function getIngredientPriceData() {
-  const response = await fetch(
-    "https://raw.githubusercontent.com/LinRuoyin/LinRuoyin.github.io/main/data/ingredients.json"
-  );
-  const priceData = await response.json();
-  return priceData;
+  try {
+    const response = await fetch(
+      "https://raw.githubusercontent.com/LinRuoyin/LinRuoyin.github.io/main/data/ingredients.json"
+    );
+    const priceData = await response.json();
+    return priceData;
+  } catch (err) {
+    console.log("getIngredientPriceData", err.message);
+  }
 }
 
 async function loadAndDisplayRecipes() {
-  const recipeResponse = await fetch(
-    "https://raw.githubusercontent.com/LinRuoyin/LinRuoyin.github.io/main/data/Recipe-app.json"
-  );
-  const recipeData = await recipeResponse.json();
-  recipesObjectArray = recipeData;
+  try {
+    const recipeResponse = await fetch(
+      "https://raw.githubusercontent.com/LinRuoyin/LinRuoyin.github.io/main/data/Recipe-app.json"
+    );
+    const recipeData = await recipeResponse.json();
+    recipesObjectArray = recipeData;
 
-  ingredientPriceArray=await getIngredientPriceData();
+    //add local user input data
+    const userRecipes = JSON.parse(localStorage.getItem("userRecipes")) || [];
 
-  sortRecipeByIngredientAmount();
+    recipesObjectArray = recipeData.concat(userRecipes);
 
-  const priceMapObject = {};
-  ingredientPriceArray.forEach((element) => {
-    priceMapObject[element.name.toLowerCase()] = element.price;
-  });
+    ingredientPriceArray = await getIngredientPriceData();
 
-  recipesObjectArray.forEach((recipe) => {
-    recipe.ingredients.forEach((ingredient) => {
-      const price = priceMapObject[ingredient.name.toLowerCase()] ?? "N/A";
-      ingredient["price"] = price;
+    sortRecipeByIngredientAmount();
+
+    const priceMapObject = {};
+    ingredientPriceArray.forEach((element) => {
+      priceMapObject[element.name.toLowerCase()] = element.price;
     });
-  });
-  console.log(recipesObjectArray);
 
-  displayRecipe(recipesObjectArray);
+    recipesObjectArray.forEach((recipe) => {
+      recipe.ingredients.forEach((ingredient) => {
+        const price = priceMapObject[ingredient.name.toLowerCase()] ?? "N/A";
+        ingredient["price"] = price;
+      });
+    });
+    console.log(recipesObjectArray);
+
+    displayRecipe(recipesObjectArray);
+  } catch (err) {
+    console.log("loadAndDisplayRecipes", err.message);
+  }
 }
 
 loadAndDisplayRecipes();
@@ -59,8 +72,9 @@ function sortRecipeByIngredientAmount() {
 
 const recipeContainer = document.querySelector(".main");
 
-function displayRecipe(recipe) {
-  recipe.forEach((recipe) => {
+function displayRecipe(recipeArray) {
+  recipeArray.forEach((recipe) => {
+    const isUserRecipe = recipe.id.toString().startsWith("user-");
     const recipeBox = document.createElement("div");
     recipeBox.classList.add("recipe-box");
     recipeBox.innerHTML = `
@@ -71,7 +85,12 @@ function displayRecipe(recipe) {
 <ul class="ingredient-list ingredient-ul"></ul>
 
 <h2 class="description basic-font-size">Description:</h2>
-<p class="recipe-description basic-font-size">${recipe.description}</p>
+<p class="recipe-description basic-font-size">${recipe.description}</p> 
+ ${
+   isUserRecipe
+     ? `<button class="delete-recipe-button" data-id="${recipe.id}"> Delete</button>`
+     : ""
+ }
 `;
 
     const ingredientList = recipeBox.querySelector(".ingredient-list");
@@ -86,6 +105,24 @@ function displayRecipe(recipe) {
     });
 
     recipeContainer.appendChild(recipeBox);
+    const deleteBtn = recipeBox.querySelector(".delete-recipe-button");
+
+    if (deleteBtn) {
+      deleteBtn.addEventListener("click", () => {
+        const idToDelete = deleteBtn.dataset.id;
+        let userRecipes = JSON.parse(localStorage.getItem("userRecipes")) || [];
+        userRecipes = userRecipes.filter(
+          (recipe) => recipe.id.toString() !== idToDelete
+        );
+        localStorage.setItem("userRecipes", JSON.stringify(userRecipes));
+
+        recipesObjectArray = recipesObjectArray.filter(
+          (recipe) => recipe.id.toString() !== idToDelete
+        );
+        recipeContainer.innerHTML = "";
+        displayRecipe(recipesObjectArray);
+      });
+    }
   });
 }
 
@@ -136,13 +173,12 @@ function displaySearchedRecipes() {
     filteredRecipe = filteredRecipe.concat(matchedIngredientRecipes);
 
     const matchedIngredientObject = ingredientPriceArray.find(
-      (element) => element.name.toLowerCase()===(keyword)
+      (element) => element.name.toLowerCase() === keyword
     );
 
-  
     if (matchedIngredientObject) {
       ingredientPriceInfo.innerHTML = `${matchedIngredientObject.name} : ${matchedIngredientObject.price}`;
-    } 
+    }
 
     const uniqueID = new Set();
     const uniqueRecipe = filteredRecipe.filter((recipe) => {
@@ -154,15 +190,12 @@ function displaySearchedRecipes() {
       }
     });
 
-
-
     if (!uniqueRecipe.length) {
       recipeContainer.innerHTML = "No recipes found:(";
       return;
     }
     displayRecipe(uniqueRecipe);
   }
-
 }
 
 searchButton.addEventListener("click", displaySearchedRecipes);
