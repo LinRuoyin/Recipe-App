@@ -43,6 +43,8 @@
         </div>
 
         <h2>Ingredients:</h2>
+              
+          <p class="five-ingredients-reminder" id="five-ingredients-reminder" >You should put in at least 5 ingredient. :) </p>
         <div class="ingredient-list">
           <div class="ingredient-item">
             <input
@@ -57,6 +59,7 @@
               placeholder="Amount & Unit"
               required
             />
+            <button class="delete-ingredient-button" id="delete-button">❌</button>
           </div>
 
           <div class="ingredient-item">
@@ -72,6 +75,7 @@
               placeholder="Amount & Unit"
               required
             />
+            <button class="delete-ingredient-button" id="delete-button">❌</button>
           </div>
 
           <div class="ingredient-item">
@@ -87,6 +91,7 @@
               placeholder="Amount & Unit"
               required
             />
+            <button class="delete-ingredient-button" id="delete-button">❌</button>
           </div>
 
           <div class="ingredient-item">
@@ -102,6 +107,7 @@
               placeholder="Amount & Unit"
               required
             />
+            <button class="delete-ingredient-button" id="delete-button">❌</button>
           </div>
 
           <div class="ingredient-item">
@@ -117,23 +123,26 @@
               placeholder="Amount & Unit"
               required
             />
+            <button class="delete-ingredient-button" id="delete-button">❌</button>
           </div>
         </div>
 
         <button
           type="button"
           id="add-ingredient-button"
-          class="add-ingredient-button"
+          class="add-ingredient-button button"
         >
-          Add more ingredients
+          ➕ Add more ingredients
         </button>
+    
+    
         <label for="recipe-description" class="description">Description</label>
         <textarea
           id="recipe-description"
           placeholder="Enter recipe description"
           required
         ></textarea>
-        <button type="submit" id="save-button" class="save-button">Save</button>
+        <button type="submit" id="save-button" class="save-button button" >Save</button>
       </form>
     </main>
     <script src="add-recipe-form-script.js"></script>
