@@ -114,12 +114,13 @@ function showSaveSuccessPopup() {
   overlay.classList.add("overlay");
 
   const popup = document.createElement("div");
+  popup.style.backgroundColor = "#fff";
   popup.classList.add("popup");
-  popup.innerHTML = `<p style="margin-bottom: 20px;">🎉 Recipe saved successfully!</p>`;
+  popup.innerHTML = `
+    <p style="margin-bottom: 20px;">🎉 Recipe saved successfully!</p>`;
 
   const backBtn = document.createElement("button");
   backBtn.textContent = "Go to Homepage";
-
   backBtn.classList.add("backBtn");
   backBtn.addEventListener("click", () => {
     window.location.href = "index.html";
@@ -128,7 +129,6 @@ function showSaveSuccessPopup() {
   const stayBtn = document.createElement("button");
   stayBtn.textContent = "Stay Here";
   stayBtn.classList.add("stayBtn");
-
   stayBtn.addEventListener("click", () => {
     document.body.removeChild(overlay);
     document.querySelector("form").reset();
