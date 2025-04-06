@@ -21,12 +21,11 @@
   font-weight: 700;
 }
 
-
-.ingredient-price-info{
-  font-size:1rem;
-  font-weight:1000;
-  color:purple;
-  padding:10px;
+.ingredient-price-info {
+  font-size: 1rem;
+  font-weight: 1000;
+  color: purple;
+  padding: 10px;
 }
 
 .main {
