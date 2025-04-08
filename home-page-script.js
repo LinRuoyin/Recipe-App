@@ -84,13 +84,15 @@ function displayRecipe(recipeArray) {
 
 <ul class="ingredient-list ingredient-ul"></ul>
 
-<h2 class="description basic-font-size">Description:</h2>
-<p class="recipe-description basic-font-size">${recipe.description}</p> 
- ${
-   isUserRecipe
-     ? `<button class="delete-recipe-button" data-id="${recipe.id}"> Delete</button>`
-     : ""
- }
+<div class="card-bottom">
+    <h2 class="description basic-font-size">Description:</h2>
+    <p class="recipe-description basic-font-size">${recipe.description}</p> 
+    ${
+      isUserRecipe
+        ? `<button class="delete-recipe-button" data-id="${recipe.id}">Delete</button>`
+        : ""
+    }
+  </div>
 `;
 
     const ingredientList = recipeBox.querySelector(".ingredient-list");

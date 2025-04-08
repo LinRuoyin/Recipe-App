@@ -97,6 +97,25 @@
   margin-right: 20px;
 }
 
+.card-bottom {
+  margin-top: auto;
+  text-align: center;
+}
+
+.delete-recipe-button {
+  margin-top: auto;
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+  height: 40px;
+
+  background-color: rgb(128, 128, 205);
+  color: white;
+  border: solid rgb(199, 194, 194);
+  border-radius: 5px;
+  cursor: pointer;
+}
+
 @media (max-width: 640px) {
   .main {
     grid-template-columns: 1fr;
