@@ -93,6 +93,7 @@ function displayRecipe(recipeArray) {
         : ""
     }
   </div>
+  
 `;
 
     const ingredientList = recipeBox.querySelector(".ingredient-list");
