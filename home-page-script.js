@@ -181,7 +181,7 @@ function displaySearchedRecipes() {
 
     if (matchedIngredientObject) {
       ingredientPriceInfo.innerHTML = `${matchedIngredientObject.name} : ${matchedIngredientObject.price}`;
-    }
+    }}
 
     const uniqueID = new Set();
     const uniqueRecipe = filteredRecipe.filter((recipe) => {
@@ -198,7 +198,7 @@ function displaySearchedRecipes() {
       return;
     }
     displayRecipe(uniqueRecipe);
-  }
 }
+
 
 searchButton.addEventListener("click", displaySearchedRecipes);
